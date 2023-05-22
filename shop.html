@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Marketplace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="css/shop.css">
+    <script src="js/products.js" defer></script>
+    <script src="js/menu.js" defer></script>
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <nav>
+                <a href="/index.html"><img src="/images/logo.png" alt="The Marketplace Logo"></a>
+
+                <button id="menu-icon" class="closed">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <ul id="web-menu">
+                    <li>
+                        <a href="/cart.html">Cart</a>
+                    </li>
+                    <li>
+                        <a href="/about.html">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <aside id="mobile-menu" class="closed">
+            <ul id="mobile-links" class="closed">
+                <li>
+                    <a href="/cart.html">Cart</a>
+                </li>
+                <li>
+                    <a href="/about.html">About</a>
+                </li>
+            </ul>
+        </aside>
+    
+        <main>
+            <ul id="shop-btns">
+                <li id="btn-search">
+                    <span id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="search" name="search-input" id="search-input">
+                </li>
+                <li id="btn-filter">
+                    <span id="filter-icon" class="show"><i class="fa-solid fa-sliders"></i></span>
+                    <ul id="filter-list">
+                        <li>
+                            <button id="filter-price" class="filter">Price</button>
+                            <ul id="filter-price-dropdown" class="dropdown-content hide">
+                                <li class="price-slider">
+                                    <span class="range-selected"></span>
+                                </li>
+                                <li class="price-range">
+                                    <input type="range" class="min" min="0" max="10000" value="0" step="1">
+                                    <input type="range" class="max" min="0" max="10000" value="10000" step="1">
+                                </li>
+                                <li class="price-input">
+                                    <label for="min">$</label>
+                                    <input type="number" id="min" class="min" name="min" value="0">
+                                    <p>-</p>
+                                    <label for="max">$</label>
+                                    <input type="number" id="max" class="max" name="max" value="10000">
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button id="filter-category" class="filter">Category</button>
+                            <ul id="filter-category-dropdown" class="dropdown-content hide">
+                                <li>
+                                    <p>Bedroom</p>
+                                </li>
+                                <li>
+                                    <p>Dining</p>
+                                </li>
+                                <li>
+                                    <p>Office</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button id="filter-item" class="filter">Item</button>
+                            <ul id="filter-item-dropdown" class="dropdown-content hide">
+                                <li>
+                                    <p>Chairs</p>
+                                </li>
+                                <li>
+                                    <p>Tables</p>
+                                </li>
+                                <li>
+                                    <p>Beds</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button id="filter-colour" class="filter">Colour</button>
+                            <ul id="filter-colour-dropdown" class="dropdown-content hide">
+                                <li>
+                                    <p>Black</p>
+                                    <span class="filter-colour-icon black"></span>
+                                </li>
+                                <li>
+                                    <p>Grey</p>
+                                    <span class="filter-colour-icon grey"></span>
+                                </li>
+                                <li>
+                                    <p>White</p>
+                                    <span class="filter-colour-icon white"></span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul id="filter-open-icons">
+                        <li>
+                            <span id="filter-confirm"><i class="fa-solid fa-check"></i></span>
+                        </li>
+                        <li>
+                            <span id="filter-reset"><i class="fa-solid fa-rotate-left"></i></span>
+                        </li>
+                        <li>
+                            <span id="filter-cancel"><i class="fa-solid fa-xmark"></i></span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <aside id="mobile-filter-menu">
+                <ul id="mobile-filter-list">
+                    <li>
+                        <button id="mobile-filter-price" class="filter mobile-filter">Price</button>
+                        <ul id="mobile-filter-price-dropdown" class="dropdown-content mobile-dropdown-content hide">
+                            <li class="price-slider">
+                                <span class="range-selected"></span>
+                            </li>
+                            <li class="price-range">
+                                <input type="range" class="min" min="0" max="10000" value="0" step="1">
+                                <input type="range" class="max" min="0" max="10000" value="10000" step="1">
+                            </li>
+                            <li class="price-input">
+                                <label for="min">$</label>
+                                <input type="number" id="mobile-min" class="min" name="min" value="0">
+                                <p>-</p>
+                                <label for="max">$</label>
+                                <input type="number" id="mobile-max" class="max" name="max" value="10000">
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button id="mobile-filter-category" class="filter mobile-filter">Category</button>
+                        <ul id="mobile-filter-category-dropdown" class="dropdown-content mobile-dropdown-content hide">
+                            <li>
+                                <p>Bedroom</p>
+                            </li>
+                            <li>
+                                <p>Dining</p>
+                            </li>
+                            <li>
+                                <p>Office</p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button id="mobile-filter-item" class="filter mobile-filter">Item</button>
+                        <ul id="mobile-filter-item-dropdown" class="dropdown-content mobile-dropdown-content hide">
+                            <li>
+                                <p>Chairs</p>
+                            </li>
+                            <li>
+                                <p>Tables</p>
+                            </li>
+                            <li>
+                                <p>Beds</p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button id="mobile-filter-colour" class="filter mobile-filter">Colour</button>
+                        <ul id="mobile-filter-colour-dropdown" class="dropdown-content mobile-dropdown-content hide">
+                            <li>
+                                <p>Black</p>
+                                <span class="filter-colour-icon black"></span>
+                            </li>
+                            <li>
+                                <p>Grey</p>
+                                <span class="filter-colour-icon grey"></span>
+                            </li>
+                            <li>
+                                <p>White</p>
+                                <span class="filter-colour-icon white"></span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+
+            <section id="products">
+                    <details class="product-tile" id="deluxe-couch">
+                        <summary>
+                            <img src="/images/products/deluxe-couch.jpg" alt="deluxe couch image" class="product-img">
+                            <article class="product-summary">
+                                    <h2 class="product-price">$475</h2>
+                                    <h3 class="product-name">Deluxe Couch</h3>
+                                    <button class="btn-cart btn-primary">Add To Cart</button>
+                            </article>
+                        </summary>
+                        <section class="product-info" id="deluxe-couch-details">
+                            <ul class="info-list">
+                                <li class="info-link"><a class="desc-link">Description</a></li>
+                                <li class="info-link"><a class="specs-link">Specifications</a></li>
+                                <li class="info-link"><a class="reviews-link">Reviews</a></li>
+                            </ul>
+                            <article class="desc-info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate lacinia dui, sed tempus quam porttitor quis. Nullam sed elit laoreet dui lacinia vulputate. Ut rhoncus nunc et eros tempor, quis vestibulum ligula tempor.
+
+                                    Nunc diam lectus, sollicitudin vulputate felis eu, convallis elementum mauris. Suspendisse et odio eu nibh elementum auctor. Nunc non lectus scelerisque, pellentesque ligula sed, ultrices purus. Ut et massa non leo molestie luctus. Sed et lectus arcu.
+
+                                    Ut sed lacus ex. Nullam sodales ante in feugiat tempus. Vestibulum ipsum ex, consequat vitae faucibus non, semper non elit. Nullam bibendum erat nec mi tincidunt lobortis. Ut lectus mi, tincidunt in ipsum in, placerat dignissim tortor.
+
+                                    Ut ut libero vitae tortor vehicula scelerisque. Suspendisse mattis vehicula felis, eget ornare odio faucibus id. Morbi porttitor vehicula nunc, id sagittis ante. Cras pulvinar sit amet nisl at viverra. Integer tempus cursus rhoncus. Mauris id consectetur mauris, et malesuada urna.
+
+                                    Fusce scelerisque ac elit et fermentum. Donec dapibus ornare nulla ut ornare. Cras congue neque et tempus molestie. Quisque quis nisl a lacus hendrerit porttitor nec a nisi.
+                                </p>
+                            </article>
+                            <article class="specs-info"></article>
+                            <article class="review-info"></article>
+                        </section>
+                    </details>
+                    <details class="product-tile" id="couch">
+                        <summary>
+                            <img src="/images/products/couch.jpg" alt="couch image" class="product-img">
+                            <article class="product-summary">
+                                <h2 class="product-price">$350</h2>
+                                <h3 class="product-name">Couch</h3>
+                                <button class="btn-cart btn-primary">Add To Cart</button>
+                            </article>
+                        </summary>
+                        <section class="product-info">
+                            <ul class="info-list">
+                                <li class="info-link"><a class="desc-link">Description</a></li>
+                                <li class="info-link"><a class="specs-link">Specifications</a></li>
+                                <li class="info-link"><a class="reviews-link">Reviews</a></li>
+                            </ul>
+                            <article class="desc-info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate lacinia dui, sed tempus quam porttitor quis. Nullam sed elit laoreet dui lacinia vulputate. Ut rhoncus nunc et eros tempor, quis vestibulum ligula tempor.
+
+                                    Nunc diam lectus, sollicitudin vulputate felis eu, convallis elementum mauris. Suspendisse et odio eu nibh elementum auctor. Nunc non lectus scelerisque, pellentesque ligula sed, ultrices purus. Ut et massa non leo molestie luctus. Sed et lectus arcu.
+
+                                    Ut sed lacus ex. Nullam sodales ante in feugiat tempus. Vestibulum ipsum ex, consequat vitae faucibus non, semper non elit. Nullam bibendum erat nec mi tincidunt lobortis. Ut lectus mi, tincidunt in ipsum in, placerat dignissim tortor.
+
+                                    Ut ut libero vitae tortor vehicula scelerisque. Suspendisse mattis vehicula felis, eget ornare odio faucibus id. Morbi porttitor vehicula nunc, id sagittis ante. Cras pulvinar sit amet nisl at viverra. Integer tempus cursus rhoncus. Mauris id consectetur mauris, et malesuada urna.
+
+                                    Fusce scelerisque ac elit et fermentum. Donec dapibus ornare nulla ut ornare. Cras congue neque et tempus molestie. Quisque quis nisl a lacus hendrerit porttitor nec a nisi.
+                                </p>
+                            </article>
+                            <article class="specs-info"></article>
+                            <article class="review-info"></article>
+                        </section>
+                    </details>
+                    <details class="product-tile" id="armchair">
+                        <summary>
+                            <img src="/images/products/armchair.jpg" alt="armchair image" class="product-img">
+                            <article class="product-summary">
+                                <h2 class="product-price">$185</h2>
+                                <h3 class="product-name">Armchair</h3>
+                                <button class="btn-cart btn-primary">Add To Cart</button>
+                            </article>
+                        </summary>
+                        <section class="product-info">
+                            <ul class="info-list">
+                                <li class="info-link"><a class="desc-link">Description</a></li>
+                                <li class="info-link"><a class="specs-link">Specifications</a></li>
+                                <li class="info-link"><a class="reviews-link">Reviews</a></li>
+                            </ul>
+                            <article class="desc-info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate lacinia dui, sed tempus quam porttitor quis. Nullam sed elit laoreet dui lacinia vulputate. Ut rhoncus nunc et eros tempor, quis vestibulum ligula tempor.
+
+                                    Nunc diam lectus, sollicitudin vulputate felis eu, convallis elementum mauris. Suspendisse et odio eu nibh elementum auctor. Nunc non lectus scelerisque, pellentesque ligula sed, ultrices purus. Ut et massa non leo molestie luctus. Sed et lectus arcu.
+
+                                    Ut sed lacus ex. Nullam sodales ante in feugiat tempus. Vestibulum ipsum ex, consequat vitae faucibus non, semper non elit. Nullam bibendum erat nec mi tincidunt lobortis. Ut lectus mi, tincidunt in ipsum in, placerat dignissim tortor.
+
+                                    Ut ut libero vitae tortor vehicula scelerisque. Suspendisse mattis vehicula felis, eget ornare odio faucibus id. Morbi porttitor vehicula nunc, id sagittis ante. Cras pulvinar sit amet nisl at viverra. Integer tempus cursus rhoncus. Mauris id consectetur mauris, et malesuada urna.
+
+                                    Fusce scelerisque ac elit et fermentum. Donec dapibus ornare nulla ut ornare. Cras congue neque et tempus molestie. Quisque quis nisl a lacus hendrerit porttitor nec a nisi.
+                                </p>
+                            </article>
+                            <article class="specs-info"></article>
+                            <article class="review-info"></article>
+                        </section>
+                    </details>
+                    <details class="product-tile" id="swivel-chair">
+                        <summary>
+                            <img src="/images/products/swivel-chair.jpg" alt="swivel chair image" class="product-img">
+                            <article class="product-summary">
+                                <h2 class="product-price">$120</h2>
+                                <h3 class="product-name">Swivel Chair</h3>
+                                <button class="btn-cart btn-primary">Add To Cart</button>
+                            </article>
+                        </summary>
+                        <section class="product-info">
+                            <ul class="info-list">
+                                <li class="info-link"><a class="desc-link">Description</a></li>
+                                <li class="info-link"><a class="specs-link">Specifications</a></li>
+                                <li class="info-link"><a class="reviews-link">Reviews</a></li>
+                            </ul>
+                            <article class="desc-info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate lacinia dui, sed tempus quam porttitor quis. Nullam sed elit laoreet dui lacinia vulputate. Ut rhoncus nunc et eros tempor, quis vestibulum ligula tempor.
+
+                                    Nunc diam lectus, sollicitudin vulputate felis eu, convallis elementum mauris. Suspendisse et odio eu nibh elementum auctor. Nunc non lectus scelerisque, pellentesque ligula sed, ultrices purus. Ut et massa non leo molestie luctus. Sed et lectus arcu.
+
+                                    Ut sed lacus ex. Nullam sodales ante in feugiat tempus. Vestibulum ipsum ex, consequat vitae faucibus non, semper non elit. Nullam bibendum erat nec mi tincidunt lobortis. Ut lectus mi, tincidunt in ipsum in, placerat dignissim tortor.
+
+                                    Ut ut libero vitae tortor vehicula scelerisque. Suspendisse mattis vehicula felis, eget ornare odio faucibus id. Morbi porttitor vehicula nunc, id sagittis ante. Cras pulvinar sit amet nisl at viverra. Integer tempus cursus rhoncus. Mauris id consectetur mauris, et malesuada urna.
+
+                                    Fusce scelerisque ac elit et fermentum. Donec dapibus ornare nulla ut ornare. Cras congue neque et tempus molestie. Quisque quis nisl a lacus hendrerit porttitor nec a nisi.
+                                </p>
+                            </article>
+                            <article class="specs-info"></article>
+                            <article class="review-info"></article>
+                        </section>
+                    </details>
+                    <details class="product-tile" id="chair">
+                        <summary>
+                            <img src="/images/products/chair.jpg" alt="chair image" class="product-img">
+                            <article class="product-summary">
+                                <h2 class="product-price">$80</h2>
+                                <h3 class="product-name">Chair</h3>
+                                <button class="btn-cart btn-primary">Add To Cart</button>
+                            </article>
+                        </summary>
+                        <section class="product-info">
+                            <ul class="info-list">
+                                <li class="info-link"><a class="desc-link">Description</a></li>
+                                <li class="info-link"><a class="specs-link">Specifications</a></li>
+                                <li class="info-link"><a class="reviews-link">Reviews</a></li>
+                            </ul>
+                            <article class="desc-info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate lacinia dui, sed tempus quam porttitor quis. Nullam sed elit laoreet dui lacinia vulputate. Ut rhoncus nunc et eros tempor, quis vestibulum ligula tempor.
+
+                                    Nunc diam lectus, sollicitudin vulputate felis eu, convallis elementum mauris. Suspendisse et odio eu nibh elementum auctor. Nunc non lectus scelerisque, pellentesque ligula sed, ultrices purus. Ut et massa non leo molestie luctus. Sed et lectus arcu.
+
+                                    Ut sed lacus ex. Nullam sodales ante in feugiat tempus. Vestibulum ipsum ex, consequat vitae faucibus non, semper non elit. Nullam bibendum erat nec mi tincidunt lobortis. Ut lectus mi, tincidunt in ipsum in, placerat dignissim tortor.
+
+                                    Ut ut libero vitae tortor vehicula scelerisque. Suspendisse mattis vehicula felis, eget ornare odio faucibus id. Morbi porttitor vehicula nunc, id sagittis ante. Cras pulvinar sit amet nisl at viverra. Integer tempus cursus rhoncus. Mauris id consectetur mauris, et malesuada urna.
+
+                                    Fusce scelerisque ac elit et fermentum. Donec dapibus ornare nulla ut ornare. Cras congue neque et tempus molestie. Quisque quis nisl a lacus hendrerit porttitor nec a nisi.
+                                </p>
+                            </article>
+                            <article class="specs-info"></article>
+                            <article class="review-info"></article>
+                        </section>
+                    </details>
+                    <details class="product-tile" id="deluxe-armchair">
+                        <summary>
+                            <img src="/images/products/deluxe-armchair.jpg" alt="deluxe armchair image" class="product-img">
+                            <article class="product-summary">
+                                <h2 class="product-price">$300</h2>
+                                <h3 class="product-name">Deluxe Armchair</h3>
+                                <button class="btn-cart btn-primary">Add To Cart</button>
+                            </article>
+                        </summary>
+                        <section class="product-info">
+                            <ul class="info-list">
+                                <li class="info-link"><a class="desc-link">Description</a></li>
+                                <li class="info-link"><a class="specs-link">Specifications</a></li>
+                                <li class="info-link"><a class="reviews-link">Reviews</a></li>
+                            </ul>
+                            <article class="desc-info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate lacinia dui, sed tempus quam porttitor quis. Nullam sed elit laoreet dui lacinia vulputate. Ut rhoncus nunc et eros tempor, quis vestibulum ligula tempor.
+
+                                    Nunc diam lectus, sollicitudin vulputate felis eu, convallis elementum mauris. Suspendisse et odio eu nibh elementum auctor. Nunc non lectus scelerisque, pellentesque ligula sed, ultrices purus. Ut et massa non leo molestie luctus. Sed et lectus arcu.
+
+                                    Ut sed lacus ex. Nullam sodales ante in feugiat tempus. Vestibulum ipsum ex, consequat vitae faucibus non, semper non elit. Nullam bibendum erat nec mi tincidunt lobortis. Ut lectus mi, tincidunt in ipsum in, placerat dignissim tortor.
+
+                                    Ut ut libero vitae tortor vehicula scelerisque. Suspendisse mattis vehicula felis, eget ornare odio faucibus id. Morbi porttitor vehicula nunc, id sagittis ante. Cras pulvinar sit amet nisl at viverra. Integer tempus cursus rhoncus. Mauris id consectetur mauris, et malesuada urna.
+
+                                    Fusce scelerisque ac elit et fermentum. Donec dapibus ornare nulla ut ornare. Cras congue neque et tempus molestie. Quisque quis nisl a lacus hendrerit porttitor nec a nisi.
+                                </p>
+                            </article>
+                            <article class="specs-info"></article>
+                            <article class="review-info"></article>
+                        </section>
+                    </details>
+                    <details class="product-tile" id="long-couch">
+                        <summary>
+                            <img src="/images/products/long-couch.jpg" alt="long couch image" class="product-img">
+                            <article class="product-summary">
+                                    <h2 class="product-price">$650</h2>
+                                    <h3 class="product-name">Long Couch</h3>
+                                    <button class="btn-cart btn-primary">Add To Cart</button>
+                            </article>
+                        </summary>
+                        <section class="product-info" id="long-couch-details">
+                            <ul class="info-list">
+                                <li class="info-link"><a class="desc-link">Description</a></li>
+                                <li class="info-link"><a class="specs-link">Specifications</a></li>
+                                <li class="info-link"><a class="reviews-link">Reviews</a></li>
+                            </ul>
+                            <article class="desc-info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate lacinia dui, sed tempus quam porttitor quis. Nullam sed elit laoreet dui lacinia vulputate. Ut rhoncus nunc et eros tempor, quis vestibulum ligula tempor.
+
+                                    Nunc diam lectus, sollicitudin vulputate felis eu, convallis elementum mauris. Suspendisse et odio eu nibh elementum auctor. Nunc non lectus scelerisque, pellentesque ligula sed, ultrices purus. Ut et massa non leo molestie luctus. Sed et lectus arcu.
+
+                                    Ut sed lacus ex. Nullam sodales ante in feugiat tempus. Vestibulum ipsum ex, consequat vitae faucibus non, semper non elit. Nullam bibendum erat nec mi tincidunt lobortis. Ut lectus mi, tincidunt in ipsum in, placerat dignissim tortor.
+
+                                    Ut ut libero vitae tortor vehicula scelerisque. Suspendisse mattis vehicula felis, eget ornare odio faucibus id. Morbi porttitor vehicula nunc, id sagittis ante. Cras pulvinar sit amet nisl at viverra. Integer tempus cursus rhoncus. Mauris id consectetur mauris, et malesuada urna.
+
+                                    Fusce scelerisque ac elit et fermentum. Donec dapibus ornare nulla ut ornare. Cras congue neque et tempus molestie. Quisque quis nisl a lacus hendrerit porttitor nec a nisi.
+                                </p>
+                            </article>
+                            <article class="specs-info"></article>
+                            <article class="review-info"></article>
+                        </section>
+                    </details>
+                    <details class="product-tile" id="modern-armchair">
+                        <summary>
+                            <img src="/images/products/modern-armchair.jpg" alt="modern armchair image" class="product-img">
+                            <article class="product-summary">
+                                    <h2 class="product-price">$220</h2>
+                                    <h3 class="product-name">Modern Armchair</h3>
+                                    <button class="btn-cart btn-primary">Add To Cart</button>
+                            </article>
+                        </summary>
+                        <section class="product-info" id="modern-armchair-details">
+                            <ul class="info-list">
+                                <li class="info-link"><a class="desc-link">Description</a></li>
+                                <li class="info-link"><a class="specs-link">Specifications</a></li>
+                                <li class="info-link"><a class="reviews-link">Reviews</a></li>
+                            </ul>
+                            <article class="desc-info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate lacinia dui, sed tempus quam porttitor quis. Nullam sed elit laoreet dui lacinia vulputate. Ut rhoncus nunc et eros tempor, quis vestibulum ligula tempor.
+
+                                    Nunc diam lectus, sollicitudin vulputate felis eu, convallis elementum mauris. Suspendisse et odio eu nibh elementum auctor. Nunc non lectus scelerisque, pellentesque ligula sed, ultrices purus. Ut et massa non leo molestie luctus. Sed et lectus arcu.
+
+                                    Ut sed lacus ex. Nullam sodales ante in feugiat tempus. Vestibulum ipsum ex, consequat vitae faucibus non, semper non elit. Nullam bibendum erat nec mi tincidunt lobortis. Ut lectus mi, tincidunt in ipsum in, placerat dignissim tortor.
+
+                                    Ut ut libero vitae tortor vehicula scelerisque. Suspendisse mattis vehicula felis, eget ornare odio faucibus id. Morbi porttitor vehicula nunc, id sagittis ante. Cras pulvinar sit amet nisl at viverra. Integer tempus cursus rhoncus. Mauris id consectetur mauris, et malesuada urna.
+
+                                    Fusce scelerisque ac elit et fermentum. Donec dapibus ornare nulla ut ornare. Cras congue neque et tempus molestie. Quisque quis nisl a lacus hendrerit porttitor nec a nisi.
+                                </p>
+                            </article>
+                            <article class="specs-info"></article>
+                            <article class="review-info"></article>
+                        </section>
+                    </details>
+                    <details class="product-tile" id="computer-desk">
+                        <summary>
+                            <img src="/images/products/computer-desk.jpg" alt="computer desk image" class="product-img">
+                            <article class="product-summary">
+                                    <h2 class="product-price">$180</h2>
+                                    <h3 class="product-name">Computer Desk</h3>
+                                    <button class="btn-cart btn-primary">Add To Cart</button>
+                            </article>
+                        </summary>
+                        <section class="product-info" id="computer-desk-details">
+                            <ul class="info-list">
+                                <li class="info-link"><a class="desc-link">Description</a></li>
+                                <li class="info-link"><a class="specs-link">Specifications</a></li>
+                                <li class="info-link"><a class="reviews-link">Reviews</a></li>
+                            </ul>
+                            <article class="desc-info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate lacinia dui, sed tempus quam porttitor quis. Nullam sed elit laoreet dui lacinia vulputate. Ut rhoncus nunc et eros tempor, quis vestibulum ligula tempor.
+
+                                    Nunc diam lectus, sollicitudin vulputate felis eu, convallis elementum mauris. Suspendisse et odio eu nibh elementum auctor. Nunc non lectus scelerisque, pellentesque ligula sed, ultrices purus. Ut et massa non leo molestie luctus. Sed et lectus arcu.
+
+                                    Ut sed lacus ex. Nullam sodales ante in feugiat tempus. Vestibulum ipsum ex, consequat vitae faucibus non, semper non elit. Nullam bibendum erat nec mi tincidunt lobortis. Ut lectus mi, tincidunt in ipsum in, placerat dignissim tortor.
+
+                                    Ut ut libero vitae tortor vehicula scelerisque. Suspendisse mattis vehicula felis, eget ornare odio faucibus id. Morbi porttitor vehicula nunc, id sagittis ante. Cras pulvinar sit amet nisl at viverra. Integer tempus cursus rhoncus. Mauris id consectetur mauris, et malesuada urna.
+
+                                    Fusce scelerisque ac elit et fermentum. Donec dapibus ornare nulla ut ornare. Cras congue neque et tempus molestie. Quisque quis nisl a lacus hendrerit porttitor nec a nisi.
+                                </p>
+                            </article>
+                            <article class="specs-info"></article>
+                            <article class="review-info"></article>
+                        </section>
+                    </details>
+                    <details class="product-tile" id="dresser">
+                        <summary>
+                            <img src="/images/products/dresser.jpg" alt="dresser image" class="product-img">
+                            <article class="product-summary">
+                                    <h2 class="product-price">$200</h2>
+                                    <h3 class="product-name">Dresser</h3>
+                                    <button class="btn-cart btn-primary">Add To Cart</button>
+                            </article>
+                        </summary>
+                        <section class="product-info" id="dresser-details">
+                            <ul class="info-list">
+                                <li class="info-link"><a class="desc-link">Description</a></li>
+                                <li class="info-link"><a class="specs-link">Specifications</a></li>
+                                <li class="info-link"><a class="reviews-link">Reviews</a></li>
+                            </ul>
+                            <article class="desc-info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate lacinia dui, sed tempus quam porttitor quis. Nullam sed elit laoreet dui lacinia vulputate. Ut rhoncus nunc et eros tempor, quis vestibulum ligula tempor.
+
+                                    Nunc diam lectus, sollicitudin vulputate felis eu, convallis elementum mauris. Suspendisse et odio eu nibh elementum auctor. Nunc non lectus scelerisque, pellentesque ligula sed, ultrices purus. Ut et massa non leo molestie luctus. Sed et lectus arcu.
+
+                                    Ut sed lacus ex. Nullam sodales ante in feugiat tempus. Vestibulum ipsum ex, consequat vitae faucibus non, semper non elit. Nullam bibendum erat nec mi tincidunt lobortis. Ut lectus mi, tincidunt in ipsum in, placerat dignissim tortor.
+
+                                    Ut ut libero vitae tortor vehicula scelerisque. Suspendisse mattis vehicula felis, eget ornare odio faucibus id. Morbi porttitor vehicula nunc, id sagittis ante. Cras pulvinar sit amet nisl at viverra. Integer tempus cursus rhoncus. Mauris id consectetur mauris, et malesuada urna.
+
+                                    Fusce scelerisque ac elit et fermentum. Donec dapibus ornare nulla ut ornare. Cras congue neque et tempus molestie. Quisque quis nisl a lacus hendrerit porttitor nec a nisi.
+                                </p>
+                            </article>
+                            <article class="specs-info"></article>
+                            <article class="review-info"></article>
+                        </section>
+                    </details>
+            </section>
+        </main>
+    
+        <footer>
+            <ul id="social-links">
+                <li>
+                    <a href="https://www.instagram.com">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:themarketplace@market.com">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <ul id="visit">
+                <li>
+                    <h3>Visit Us</h3>
+                </li>
+                <li>
+                    <p>Mon - Fri | 9am - 7pm<br>Sat - Sun | 11am - 5pm<br><br><a href="">Store Locator</a></p>
+                </li>
+            </ul>
+        </footer>
+    </div>
+</body>
+</html>
