@@ -87,3 +87,26 @@ main {
     box-shadow: inset 0 0 0 .2rem var(--color-dark);
     color: var(--color-dark);
 }
+
+.btn-red-xmark {
+    position: absolute;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 2.5rem;
+    color: var(--color-red);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-red-xmark i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+}
+
+.btn-red-xmark:hover {
+    color: var(--color-white);
+}

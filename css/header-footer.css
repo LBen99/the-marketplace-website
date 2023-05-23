@@ -3,6 +3,7 @@ ul {
 }
 
 a {
+    width: fit-content;
     text-decoration: none;
     color: transparent;
     text-shadow: 0 0 0 var(--shadow);

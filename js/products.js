@@ -18,7 +18,8 @@ const filterList = document.getElementById("filter-list");
 const mobileFilterMenu = document.getElementById("mobile-filter-menu");
 const mobileFilterList = document.getElementById("mobile-filter-list");
 const dropdowns = document.querySelectorAll(".dropdown-content");
-//! PRICE FILTER !//
+
+//* PRICE FILTER VARIABLES *//
 let rangeMin = 0;
 const range = document.querySelectorAll(".range-selected");
 const priceRange = document.querySelectorAll(".price-range input");
@@ -31,8 +32,9 @@ const tileOpen = document.querySelectorAll(".product-tile[open]");
 const cartBtn = document.querySelectorAll(".btn-cart");
 const productImg = document.querySelectorAll(".product-img");
 const productSummary = document.querySelectorAll(".product-tile summary");
+const tileCloseBtn = document.querySelectorAll(".btn-red-xmark");
 
-//* PAGE FUNCTIONS *//
+//! FUNCTIONS !//
 function searchOpen() {
     searchBtn.classList.add("search-open");
 }
@@ -75,8 +77,68 @@ function filterClosed() {
     hideIcons();
 }
 
+function filterPriceRange(e) {
+    let minRange = parseInt(priceRange[0].value);
+    let maxRange = parseInt(priceRange[1].value);
+    let mobileMinRange = parseInt(priceRange[2].value);
+    let mobileMaxRange = parseInt(priceRange[3].value);
+
+    if (maxRange - minRange < rangeMin) {
+        if (e.target.className === "min") {
+            priceRange[0].value = maxRange - rangeMin;
+        } else {
+            priceRange[1].value = minRange + rangeMin;
+        }
+    } else {
+        priceInput[0].value = minRange;
+        priceInput[1].value = maxRange;
+        range[0].style.left = (minRange / priceRange[0].max) * 100 + "%";
+        range[0].style.right = 100 - (maxRange / priceRange[1].max) * 100 + "%";
+    }
+        
+    if (mobileMaxRange - mobileMinRange < rangeMin) {
+        if (e.target.className === "min") {
+            priceRange[2].value = mobileMaxRange - rangeMin;
+        } else {
+            priceRange[3].value = mobileMinRange + rangeMin;
+        }
+    } else {
+        priceInput[2].value = mobileMinRange;
+        priceInput[3].value = mobileMaxRange;
+        range[1].style.left = (mobileMinRange / priceRange[2].max) * 100 + "%";
+        range[1].style.right = 100 - (mobileMaxRange / priceRange[3].max) * 100 + "%";
+    }
+}
+
+function filterPriceInput(e) {
+    let minPrice = priceInput[0].value;
+    let maxPrice = priceInput[1].value;
+    let mobileMinPrice = priceInput[0].value;
+    let mobileMaxPrice = priceInput[1].value;
+
+    if (maxPrice - minPrice >= rangeMin && maxPrice <= priceRange[1].max) {
+        if (e.target.className === "min") {
+            priceRange[0].value = minPrice;
+            range[0].style.left = (minPrice / priceRange[0].max) * 100 + "%";
+        } else {
+            priceRange[1].value = maxPrice;
+            range[0].style.right = 100 - (maxPrice / priceRange[1].max) * 100 + "%";
+        }
+    }
+
+    if (mobileMaxPrice - mobileMinPrice >= rangeMin && mobileMaxPrice <= priceRange[3].max) {
+        if (e.target.className === "min") {
+            priceRange[2].value = mobileMinPrice;
+            range[1].style.left = (mobileMinPrice / priceRange[2].max) * 100 + "%";
+        } else {
+            priceRange[3].value = mobileMaxPrice;
+            range[1].style.right = 100 - (mobileMaxPrice / priceRange[3].max) * 100 + "%";
+        }
+    }
+}
+
 function showDropdown() {
-    this.classList.add("filter-hover");
+    this.classList.add("filter-selected");
     for (let i = 0; i < dropdowns.length; i++) {
         if (dropdowns[i].id.includes(this.id + "-dropdown")) {
             dropdowns[i].classList.remove("hide");
@@ -85,7 +147,7 @@ function showDropdown() {
 }
 
 function hideDropdown() {
-    this.classList.remove("filter-hover");
+    this.classList.remove("filter-selected");
     for (let i = 0; i < dropdowns.length; i++) {
         if (dropdowns[i].id.includes(this.id + "-dropdown")) {
             dropdowns[i].classList.add("hide");
@@ -95,9 +157,7 @@ function hideDropdown() {
 
 function toggleDropdown(e) {
     e.stopPropagation();
-    filters.forEach(filter => filter.classList.remove("filter-hover"));
-    dropdowns.forEach(dropdown => dropdown.classList.add("hide"));
-    this.classList.toggle("filter-hover");
+    this.classList.toggle("filter-selected");
     for (let i = 0; i < dropdowns.length; i++) {
         if (dropdowns[i].id.includes(this.id + "-dropdown")) {
             dropdowns[i].classList.toggle("hide")
@@ -107,10 +167,16 @@ function toggleDropdown(e) {
 
 function hideProducts() {
     products.classList.add("tile-open");
+    tileCloseBtn.forEach((btn) => {
+        btn.classList.remove("hide");
+    });
 }
 
 function showProducts() {
     products.classList.remove("tile-open");
+    tileCloseBtn.forEach((btn) => {
+        btn.classList.add("hide");
+    });
     centerImg();
     window.onresize = centerImg;
 }
@@ -142,6 +208,7 @@ function centerImg() {
     productImg.forEach(img => img.setAttribute("style", "left: " + posLeft + "px"));
 }
 
+//! EVENT LISTENERS !//
 window.onresize = centerImg;
 window.onload = centerImg;
 
@@ -152,7 +219,7 @@ wrapper.addEventListener("click", function() {
     showProducts();
 });
 
-//* SEARCH BUTTON FUNCTIONS *//
+//* SEARCH BUTTON *//
 searchBtn.addEventListener("click", function(e) {
     e.stopPropagation();
     if (filterBtn.classList.value.includes("filter-open")) {
@@ -169,7 +236,7 @@ searchInput.addEventListener("click", function(e) {
     e.stopPropagation();
 })
 
-//* FILTER BUTTON FUNCTIONS *//
+//* FILTERS *//
 filterBtn.addEventListener("click", function(e) {
     e.stopPropagation();
     if (searchBtn.classList.value.includes("search-open")) {
@@ -195,7 +262,7 @@ dropdowns.forEach(dropdown => dropdown.addEventListener("mouseenter", () => {
     dropdown.classList.remove("hide");
     for (let i = 0; i < filters.length; i++) {
         if (dropdown.id.includes(filters[i].id + "-dropdown")) {
-            filters[i].classList.add("filter-hover");
+            filters[i].classList.add("filter-selected");
         }
     }
 }));
@@ -204,7 +271,7 @@ dropdowns.forEach(dropdown => dropdown.addEventListener("mouseleave", () => {
     dropdown.classList.add("hide");
     for (let i = 0; i < filters.length; i++) {
         if (dropdown.id.includes(filters[i].id + "-dropdown")) {
-            filters[i].classList.remove("filter-hover");
+            filters[i].classList.remove("filter-selected");
         }
     }
 }));
@@ -217,72 +284,16 @@ mobileFilterMenu.addEventListener("click", (e) => {
     e.stopPropagation();
 });
 
-//! FILTER PRICE FUNCTIONS !//
+//* FILTER PRICE *//
 priceRange.forEach((input) => {
-    input.addEventListener("input", (e) => {
-        let minRange = parseInt(priceRange[0].value);
-        let maxRange = parseInt(priceRange[1].value);
-        let mobileMinRange = parseInt(priceRange[2].value);
-        let mobileMaxRange = parseInt(priceRange[3].value);
-
-        if (maxRange - minRange < rangeMin) {
-            if (e.target.className === "min") {
-                priceRange[0].value = maxRange - rangeMin;
-            } else {
-                priceRange[1].value = minRange + rangeMin;
-            }
-        } else {
-            priceInput[0].value = minRange;
-            priceInput[1].value = maxRange;
-            range[0].style.left = (minRange / priceRange[0].max) * 100 + "%";
-            range[0].style.right = 100 - (maxRange / priceRange[1].max) * 100 + "%";
-        }
-        
-        if (mobileMaxRange - mobileMinRange < rangeMin) {
-            if (e.target.className === "min") {
-                priceRange[2].value = mobileMaxRange - rangeMin;
-            } else {
-                priceRange[3].value = mobileMinRange + rangeMin;
-            }
-        } else {
-            priceInput[2].value = mobileMinRange;
-            priceInput[3].value = mobileMaxRange;
-            range[1].style.left = (mobileMinRange / priceRange[2].max) * 100 + "%";
-            range[1].style.right = 100 - (mobileMaxRange / priceRange[3].max) * 100 + "%";
-        }
-    });
+    input.addEventListener("input", filterPriceRange);
 });
 
 priceInput.forEach((input) => {
-    input.addEventListener("input", (e) => {
-        let minPrice = priceInput[0].value;
-        let maxPrice = priceInput[1].value;
-        let mobileMinPrice = priceInput[0].value;
-        let mobileMaxPrice = priceInput[1].value;
-
-        if (maxPrice - minPrice >= rangeMin && maxPrice <= priceRange[1].max) {
-            if (e.target.className === "min") {
-                priceRange[0].value = minPrice;
-                range[0].style.left = (minPrice / priceRange[0].max) * 100 + "%";
-            } else {
-                priceRange[1].value = maxPrice;
-                range[0].style.right = 100 - (maxPrice / priceRange[1].max) * 100 + "%";
-            }
-        }
-
-        if (mobileMaxPrice - mobileMinPrice >= rangeMin && mobileMaxPrice <= priceRange[3].max) {
-            if (e.target.className === "min") {
-                priceRange[2].value = mobileMinPrice;
-                range[1].style.left = (mobileMinPrice / priceRange[2].max) * 100 + "%";
-            } else {
-                priceRange[3].value = mobileMaxPrice;
-                range[1].style.right = 100 - (mobileMaxPrice / priceRange[3].max) * 100 + "%";
-            }
-        }
-    });
+    input.addEventListener("input", filterPriceInput);
 });
 
-//* PRODUCT FUNCTIONS *//
+//* PRODUCTS *//
 tiles.forEach(tile => tile.addEventListener("click", function(e) {
     e.stopPropagation();
     e.preventDefault();
@@ -291,18 +302,25 @@ tiles.forEach(tile => tile.addEventListener("click", function(e) {
     window.onresize = productImg.forEach(img => img.setAttribute("style", "left: 0"));
     if (tileOpen) {
         hideProducts();
+        wrapper.scrollIntoView({behavior: "smooth"});
     }
 
     if (!this.open) {
-        for (let i = 0; i < tiles.length; i++) {
-                if (tiles[i].id !== this.id) {
-                    tiles[i].classList.toggle("hide");
-                    this.open = this.open == false ? true : false;
+        tiles.forEach((tile) => {
+            if (tile.id !== this.id) {
+                tile.classList.toggle("hide");
+                this.open = this.open == false ? true : false;
             }
-        }
+        });
     }
 }));
 
-cartBtn.forEach(btn => btn.addEventListener("click", function(e) {
+tileCloseBtn.forEach(btn => btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    allTiles();
+    showProducts();
+}));
+
+cartBtn.forEach(btn => btn.addEventListener("click", (e) => {
     e.stopPropagation();
 }));
