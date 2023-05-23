@@ -8,6 +8,7 @@ main {
 
 /********** CLOSED PRODUCT TILE **********/
 #products {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr;
     align-items: center;
@@ -32,12 +33,16 @@ main {
     overflow: hidden;
 }
 
-.product-tile summary {
+details summary {
     list-style: none;
     padding-bottom: 1rem;
 }
 
-.product-tile summary::marker {
+details summary::marker {
+    display: none;
+}
+
+details summary::-webkit-details-marker {
     display: none;
 }
 
@@ -132,6 +137,7 @@ main {
 /********** BUTTON DESIGN **********/
 /*! SHOP BUTTONS !*/
 #shop-btns {
+    position: relative;
     display: flex;
     max-width: 120rem;
     margin: 1rem auto;

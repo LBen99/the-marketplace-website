@@ -184,7 +184,7 @@ function showProducts() {
 function allTiles() {
     for (let i = 0; i < tiles.length; i++) {
         if (tiles[i].classList.value.includes("hide")) {
-            tiles[i].classList.toggle("hide");
+            tiles[i].classList.remove("hide");
         }
         if (tiles[i].open) {
             tiles[i].open = false;
@@ -312,14 +312,39 @@ tiles.forEach(tile => tile.addEventListener("click", function(e) {
                 this.open = this.open == false ? true : false;
             }
         });
+        // for (let i = 0; i < tiles.length; i++) {
+        //     if (tiles[i].id !== this.id) {
+        //         tiles[i].classList.toggle("hide");
+        //         this.open = this.open === false ? true : false;
+        //     }
+        // }
     }
+    tileCloseBtn.forEach(btn => btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        // console.log(btn.id);
+        if (btn.id === this.id + "-close") {
+            // console.log(this.id, btn.id);
+            tile.getAttribute("open");
+            tile.removeAttribute("open");
+            // this.open = null
+            this.classList.add("hide")
+            // this.open = this.open === false ? true : false;
+            allTiles();
+            showProducts();
+        }
+    }));
 }));
 
-tileCloseBtn.forEach(btn => btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    allTiles();
-    showProducts();
-}));
+// tileCloseBtn.forEach((btn) => {
+//     btn.classList.add("hide");
+// });
+
+// tileCloseBtn.forEach(btn => btn.addEventListener("click", (e) => {
+//     e.stopPropagation();
+//     console.log(btn.id);
+//     allTiles();
+//     showProducts();
+// }));
 
 cartBtn.forEach(btn => btn.addEventListener("click", (e) => {
     e.stopPropagation();
