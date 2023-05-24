@@ -174,22 +174,15 @@ function hideProducts() {
 
 function showProducts() {
     products.classList.remove("tile-open");
+    tiles.forEach((tile) => {
+        tile.classList.remove("hide");
+        tile.removeAttribute("open");
+    });
     tileCloseBtn.forEach((btn) => {
         btn.classList.add("hide");
     });
     centerImg();
     window.onresize = centerImg;
-}
-
-function allTiles() {
-    for (let i = 0; i < tiles.length; i++) {
-        if (tiles[i].classList.value.includes("hide")) {
-            tiles[i].classList.remove("hide");
-        }
-        if (tiles[i].open) {
-            tiles[i].open = false;
-        }
-    }
 }
 
 function centerImg() {
@@ -213,7 +206,6 @@ window.onresize = centerImg;
 window.onload = centerImg;
 
 wrapper.addEventListener("click", function() {
-    allTiles();
     searchClosed();
     filterClosed();
     showProducts();
@@ -226,7 +218,6 @@ searchBtn.addEventListener("click", function(e) {
         filterClosed();
     }
     if (tileOpen) {
-        allTiles();
         showProducts();
     }
     searchOpen();
@@ -243,7 +234,6 @@ filterBtn.addEventListener("click", function(e) {
         searchClosed();
     }
     if (tileOpen) {
-        allTiles();
         showProducts();
     }
     filterOpen();
@@ -300,10 +290,8 @@ tiles.forEach(tile => tile.addEventListener("click", function(e) {
     searchClosed();
     filterClosed();
     window.onresize = productImg.forEach(img => img.setAttribute("style", "left: 0"));
-    if (tileOpen) {
-        hideProducts();
-        wrapper.scrollIntoView({behavior: "smooth"});
-    }
+    hideProducts();
+    window.scrollTo(top);
 
     if (!this.open) {
         tiles.forEach((tile) => {
@@ -312,39 +300,14 @@ tiles.forEach(tile => tile.addEventListener("click", function(e) {
                 this.open = this.open == false ? true : false;
             }
         });
-        // for (let i = 0; i < tiles.length; i++) {
-        //     if (tiles[i].id !== this.id) {
-        //         tiles[i].classList.toggle("hide");
-        //         this.open = this.open === false ? true : false;
-        //     }
-        // }
     }
-    tileCloseBtn.forEach(btn => btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        // console.log(btn.id);
-        if (btn.id === this.id + "-close") {
-            // console.log(this.id, btn.id);
-            tile.getAttribute("open");
-            tile.removeAttribute("open");
-            // this.open = null
-            this.classList.add("hide")
-            // this.open = this.open === false ? true : false;
-            allTiles();
-            showProducts();
-        }
-    }));
 }));
 
-// tileCloseBtn.forEach((btn) => {
-//     btn.classList.add("hide");
-// });
-
-// tileCloseBtn.forEach(btn => btn.addEventListener("click", (e) => {
-//     e.stopPropagation();
-//     console.log(btn.id);
-//     allTiles();
-//     showProducts();
-// }));
+tileCloseBtn.forEach(btn => btn.addEventListener("click", function(e) {
+    e.stopPropagation();
+    showProducts();
+    btn.parentElement.parentElement.scrollIntoView({block: "center"});
+}));
 
 cartBtn.forEach(btn => btn.addEventListener("click", (e) => {
     e.stopPropagation();
