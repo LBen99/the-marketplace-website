@@ -29,16 +29,16 @@ main {
     overflow: hidden;
 }
 
-details summary {
+.product-tile summary {
     list-style: none;
     padding-bottom: 1rem;
 }
 
-details summary::marker {
+.product-tile summary::marker {
     display: none;
 }
 
-details summary::-webkit-details-marker {
+.product-tile summary::-webkit-details-marker {
     display: none;
 }
 
@@ -77,7 +77,9 @@ details summary::-webkit-details-marker {
     display: grid;
     grid-template-areas:
         "img"
-        "summary"
+        "price"
+        "name"
+        "btn"
         "info";
     max-width: 60rem;
     margin: 0 auto;
@@ -93,14 +95,25 @@ details summary::-webkit-details-marker {
     grid-area: img;
 }
 
-.product-tile[open] .product-summary {
-    grid-area: summary;
-    position: relative;
+.product-tile[open] summary :nth-child(2),
+.product-tile[open] summary :nth-child(3),
+.product-tile[open] summary :nth-child(4) {
     margin: auto;
 }
 
-.product-tile[open] .btn-primary {
-    width: 100%;
+.product-tile[open] summary :nth-child(2) {
+    grid-area: price;
+    margin-bottom: 0;
+}
+
+.product-tile[open] summary :nth-child(3) {
+    grid-area: name;
+}
+
+.product-tile[open] summary :nth-child(4) {
+    grid-area: btn;
+    margin-top: 0;
+    width: 75%;
 }
 
 .product-info {
@@ -110,24 +123,21 @@ details summary::-webkit-details-marker {
     gap: 1rem;
 }
 
-.product-info article {
+.desc-info {
     grid-area: text;
-}
-
-.product-info article p {
     font-size: 1.2rem;
 }
 
 .info-list {
     grid-area: links;
+    display: flex;
+    margin-bottom: .5rem;
+    border-bottom: .1rem solid var(--shadow);
 }
 
 .info-link {
-    margin: 1rem 0;
-}
-
-.info-link:nth-child(1) {
-    margin-top: 0;
+    margin: 1rem 1rem .5rem 0;
+    font-size: 1.4rem;
 }
 
 /********** BUTTON DESIGN **********/
@@ -173,14 +183,6 @@ details summary::-webkit-details-marker {
     border: .1rem solid var(--color-dark);
     border-radius: 3rem;
 }
-
-/* #search-icon,
-#filter-icon,
-#filter-confirm,
-#filter-reset,
-#filter-cancel {
-    
-} */
 
 #search-icon {
     display: block;
@@ -484,12 +486,6 @@ input[type=search]::-ms-reveal {
     margin: 1rem auto 0;
 }
 
-.product-tile[open] .btn-primary {
-    position: relative;
-    left: 50%;
-    transform: translate(-50%);
-}
-
 /*! CLOSE BUTTON !*/
 .btn-red-xmark {
     top: 0rem;
@@ -510,13 +506,19 @@ input[type=search]::-ms-reveal {
     .product-tile[open] {
         display: grid;
         grid-template-areas:
-            "img summary"
+            "img price"
+            "img name"
+            "img btn"
             "info info";
     }
 
     .product-tile[open] summary {
         display: grid;
-        grid-template-areas: "img summary";
+        grid-template-areas:
+            "img price"
+            "img name"
+            "img btn";
+        grid-template-columns: 50% 50%;
     }
 
     #btn-filter {
